@@ -1,10 +1,15 @@
-const usuarioController = (app) => {
+import UsuarioModel from "../models/usuarioModel.js"
+import bd from "../infra/bd.js"
+
+const usuarioController = (app, bd) => {
 
 app.get('/usuarios', (req, res) => {
-    res.send ("rastreamento da aplicação sendo feito com nodemon")
+    const resposta = (bd.usuarios)
+    res.send (resposta)
 }),
 app.post('/usuarios', (req, res) => {
- res.send (req.body)
+    const resposta = UsuarioModel.armazenar(req.body)
+    res.send(resposta)
 })
 
 }
